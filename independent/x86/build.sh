@@ -3,9 +3,14 @@ set -eux
 
 export WORKSPACE=$(cd "$(dirname "$(readlink -f "$0")")" && pwd)
 
+FIT_JAVA_BRANCH=${1:-"3.5.x"}
+APP_PLATFORM_BRANCH=${2:-"develop"}
+ELSA_BRANCH=${3:-"elsa-0.1.x"}
+
 cd ${WORKSPACE}
-git clone https://gitcode.com/ModelEngine/fit-framework.git -b 3.5.x
-git clone https://gitcode.com/ModelEngine/app-platform.git -b main
+git clone -b ${FIT_JAVA_BRANCH} https://gitcode.com/ModelEngine/fit-framework.git ${WORKSPACE}/fit-framework
+git clone -b ${APP_PLATFORM_BRANCH} https://gitcode.com/ModelEngine/app-platform.git ${WORKSPACE}/app-platform
+git clone -b ${ELSA_BRANCH} https://gitcode.com/ModelEngine/fit-framework.git ${WORKSPACE}/elsa
 mkdir -p ${WORKSPACE}/output
 
 # 下载 jdk17

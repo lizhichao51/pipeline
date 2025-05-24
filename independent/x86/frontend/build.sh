@@ -3,8 +3,8 @@ set -ex
 node -v
 npm -v
 
-elsa_core_dir=${WORKSPACE}/fit-framework/framework/elsa/fit-elsa
-elsa_react_dir=${WORKSPACE}/fit-framework/framework/elsa/fit-elsa-react
+elsa_core_dir=${WORKSPACE}/elsa/framework/elsa/fit-elsa
+elsa_react_dir=${WORKSPACE}/elsa/framework/elsa/fit-elsa-react
 appdir=${WORKSPACE}/app-platform/app-engine
 workdir=${WORKSPACE}/frontend
 CURRENT_BUILD_DIR=${workdir}/build
@@ -42,6 +42,9 @@ npm run build
 #npm install
 cd ${appdir}/frontend
 npm install --legacy-peer-deps --force --registry=https://registry.npmmirror.com
+
+cp -r ${elsa_core_dir}/i18n ${WORKSPACE}/app-platform/app-engine/frontend/node_modules/\@fit-elsa/elsa-core/
+cp -r ${elsa_react_dir}/src ${WORKSPACE}/app-platform/app-engine/frontend/node_modules/\@fit-elsa/elsa-react/
 
 # 打包静态资源
 npm run build:$tag
