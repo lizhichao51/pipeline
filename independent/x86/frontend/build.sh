@@ -17,7 +17,7 @@ echo "workspace: " "${WORKSPACE}"
 arch_type=x86_64
 ENV_TYPE=x86_64
 PLATFORM=x86_64
-VERSION=opensource-1.0.0
+VERSION=${1:-"opensource-1.0.0"}
 rm -rf $appdir/frontend/build
 rm -rf $appdir/frontend/node_modules
 cd $workdir

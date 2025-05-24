@@ -7,7 +7,7 @@ SKIP_TESTS=true
 app=fit
 image_name=app-builder
 image_tag=3.5.0
-VERSION=opensource-1.0.0
+VERSION=${1:-"opensource-1.0.0"}
 PACKAGE_TYPE=internal
 PLATFORM=x86_64
 ENV_TYPE=x86_64
@@ -31,8 +31,8 @@ cd "${WORKSPACE}/app-platform/shell"
 chmod -R 755 ./
 ./sql_build.sh
 cd "${WORKSPACE}"
-mkdir -p sql
-mv -f ${WORKSPACE}/app-platform/sql/* ${WORKSPACE}/sql/
+mkdir -p "${WORKSPACE}"/package/sql
+mv -f ${WORKSPACE}/app-platform/sql/* "${WORKSPACE}"/package/sql/
 
 cd "${CURRENT_BUILD_DIR}"
 mkdir -p icon
