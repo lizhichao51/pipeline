@@ -11,6 +11,10 @@ cd ${WORKSPACE}
 git clone -b ${FIT_JAVA_BRANCH} https://gitcode.com/ModelEngine/fit-framework.git ${WORKSPACE}/fit-framework
 git clone -b ${APP_PLATFORM_BRANCH} https://gitcode.com/ModelEngine/app-platform.git ${WORKSPACE}/app-platform
 git clone -b ${ELSA_BRANCH} https://gitcode.com/ModelEngine/fit-framework.git ${WORKSPACE}/elsa
+
+# 修改 elsa 依赖路径
+bash modify.sh
+
 mkdir -p ${WORKSPACE}/output
 
 # 下载 jdk17
