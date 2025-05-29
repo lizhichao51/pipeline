@@ -14,4 +14,8 @@ cp /opt/appbuilder/form/template.zip /var/share/smart_form
 mkdir -p /var/share/smart_form/temporary
 chmod -R 750 /var/share/smart_form
 
+mkdir -p  /var/share/backup/aipp-instance-log
+mkdir -p  /var/share/backup/chat-session
+chmod -R 750 /var/share/backup
+
 ../bin/fit start
