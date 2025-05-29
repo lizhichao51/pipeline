@@ -75,6 +75,8 @@ services:
       LOG_HOME: /log/app
       LOG_NUM: 4320
       LOG_SIZE: "50M"
+      app-engine.ttl.businessData: 15
+      app-engine.ttl.nonBusinessData: 1
     volumes:
       - "./appengine/fit-runtime:/var/store/tools"
       - "./appengine/log:/log/app/app-builder"
