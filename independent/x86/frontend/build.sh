@@ -3,8 +3,8 @@ set -ex
 node -v
 npm -v
 
-elsa_core_dir=${WORKSPACE}/fit-framework/framework/elsa/fit-elsa
-elsa_react_dir=${WORKSPACE}/fit-framework/framework/elsa/fit-elsa-react
+elsa_core_dir=${WORKSPACE}/elsa/framework/elsa/fit-elsa
+elsa_react_dir=${WORKSPACE}/elsa/framework/elsa/fit-elsa-react
 appdir=${WORKSPACE}/app-platform/app-engine
 workdir=${WORKSPACE}/frontend
 CURRENT_BUILD_DIR=${workdir}/build
@@ -17,7 +17,7 @@ echo "workspace: " "${WORKSPACE}"
 arch_type=x86_64
 ENV_TYPE=x86_64
 PLATFORM=x86_64
-VERSION=opensource-1.0.0
+VERSION=${1:-"opensource-1.0.0"}
 rm -rf $appdir/frontend/build
 rm -rf $appdir/frontend/node_modules
 cd $workdir
@@ -38,6 +38,7 @@ npm link
 cd ${elsa_react_dir}
 npm install --legacy-peer-deps  --registry=https://registry.npmmirror.com
 npm run build
+npm link
 
 #npm install
 cd ${appdir}/frontend

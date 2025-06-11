@@ -7,7 +7,7 @@ SKIP_TESTS=true
 app=fit
 image_name=app-builder
 image_tag=3.5.0
-VERSION=opensource-1.0.0
+VERSION=${1:-"opensource-1.0.0"}
 PACKAGE_TYPE=internal
 PLATFORM=x86_64
 ENV_TYPE=x86_64
@@ -27,88 +27,12 @@ mkdir -p ${CURRENT_BUILD_DIR}
 # 拷贝智能表单
 cp -r ${WORKSPACE}/app-platform/examples/smart-form ${CURRENT_BUILD_DIR}/
 
+cd "${WORKSPACE}/app-platform/shell"
+chmod -R 755 ./
+./sql_build.sh
 cd "${WORKSPACE}"
-mkdir -p sql
-# app builder相关sql语句
-appbuilder_sql_list=$(find "${WORKSPACE}"/app-platform/app-builder/jane/jober/sql/jade/ -name "*.sql")
-echo "${appbuilder_sql_list}"
-for i in ${appbuilder_sql_list}
-do
-  cp "$i" sql/
-done
-# store相关sql语句
-store_sql_list=$(find "${WORKSPACE}"/app-platform/carver/plugins/tool-repository-postgresql/src/main/resources/ -name "*.sql")
-echo "${store_sql_list}"
-for i in ${store_sql_list}
-do
-  cp "$i" sql/
-done
-
-store_sql_list_task=$(find "${WORKSPACE}"/app-platform/store/plugins/store-repository-postgresql/src/main/resources/ -name "*.sql")
-echo "${store_sql_list_task}"
-for i in ${store_sql_list_task}
-do
-  cp "$i" sql/
-done
-
-store_sql_init=$(find "${CURRENT_WORKSPACE}"/${PACKAGE_TYPE} -name "*.sql")
-echo "${store_sql_init}"
-for i in ${store_sql_init}
-do
-  cp "$i" sql/
-done
-
-# app-engine-announcement 相关sql 脚本
-app_announcement_sql_list=$(find "${WORKSPACE}"/app-platform/app-engine/plugins/app-announcement/src/main/resources/sql/ -name "*.sql")
-echo "${app_announcement_sql_list}"
-for i in ${app_announcement_sql_list}
-do
-  cp "$i" sql/
-done
-
-# app-engine-metrics 相关sql 脚本
-app_metrics_sql_list=$(find "${WORKSPACE}"/app-platform/app-engine/plugins/app-metrics/src/main/resources/sql/ -name "*.sql")
-echo "${app_metrics_sql_list}"
-for i in ${app_metrics_sql_list}
-do
-  cp "$i" sql/
-done
-
-# app-eval 相关sql 脚本
-eval_dataset_sql_list=$(find "${WORKSPACE}"/app-platform/app-eval/plugins/eval-dataset/src/main/resources/sql/ -name "*.sql")
-echo "${eval_dataset_sql_list}"
-for i in ${eval_dataset_sql_list}
-do
-  cp "$i" sql/
-done
-
-eval_task_sql_list=$(find "${WORKSPACE}"/app-platform/app-eval/plugins/eval-task/src/main/resources/sql/ -name "*.sql")
-echo "${eval_task_sql_list}"
-for i in ${eval_task_sql_list}
-do
-  cp "$i" sql/
-done
-
-app_worker_sql_list=$(find "${WORKSPACE}"/app-platform/app-eval/plugins/simple-uid-generator/src/main/resources/sql/ -name "*.sql")
-echo "${app_worker_sql_list}"
-for i in ${app_worker_sql_list}
-do
-  cp "$i" sql/
-done
-
-app_model_center_sql_list=$(find "${WORKSPACE}"/app-platform/app-builder/plugins/aipp-custom-model-center/src/main/resources/sql/ -name "*.sql")
-echo "${app_model_center_sql_list}"
-for i in ${app_model_center_sql_list}
-do
-  cp "$i" sql/
-done
-
-app_knowledge_sql_list=$(find "${WORKSPACE}"/app-platform/app-knowledge/plugins/knowledge-manager/src/main/resources/sql/ -name "*.sql")
-echo "${app_knowledge_sql_list}"
-for i in ${app_knowledge_sql_list}
-do
-  cp "$i" sql/
-done
+mkdir -p "${WORKSPACE}"/package/sql
+mv -f ${WORKSPACE}/app-platform/sql/* "${WORKSPACE}"/package/sql/
 
 cd "${CURRENT_BUILD_DIR}"
 mkdir -p icon

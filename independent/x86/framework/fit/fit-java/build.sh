@@ -10,7 +10,7 @@ mkdir -p ${WORKSPACE}/framework/fit/fit-java/build
 CURRENT_WORKSPACE=${WORKSPACE}/framework/fit/fit-java
 CURRENT_BUILD_DIR=${CURRENT_WORKSPACE}/build
 PUBLIC_DIR=${WORKSPACE}/public
-VERSION=opensource-1.0.0
+VERSION=${1:-"opensource-1.0.0"}
 PLATFORM=x86_64
 ENV_TYPE=x86_64
 java_engine_version=3.5.0-SNAPSHOT

@@ -8,7 +8,7 @@ CURRENT_BUILD_DIR=${CURRENT_WORKSPACE}/build
 base_image="quay.io/openeuler/openeuler:latest"
 mkdir -p ${CURRENT_BUILD_DIR}
 
-VERSION=opensource-1.0.0
+VERSION=${1:-"opensource-1.0.0"}
 PLATFORM=x86_64
 ENV_TYPE=x86_64
 arch_type=x86_64

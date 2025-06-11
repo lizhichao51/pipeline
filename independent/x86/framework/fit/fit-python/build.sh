@@ -14,7 +14,7 @@ PUBLIC_DIR=${WORKSPACE}/public
 cd ${CURRENT_WORKSPACE}
 PLATFORM=x86_64
 ENV_TYPE=x86_64
-VERSION=opensource-1.0.0
+VERSION=${1:-"opensource-1.0.0"}
 base_image="quay.io/openeuler/openeuler:latest"
 packageDir="${CURRENT_WORKSPACE}/package"
 mkdir -p ${packageDir}
