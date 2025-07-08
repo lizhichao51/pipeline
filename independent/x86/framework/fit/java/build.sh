@@ -47,7 +47,8 @@ do
 done
 
 # 拷贝应用头像
-bash "${WORKSPACE}/app-platform/shell/icon_build.sh"
+cd "${WORKSPACE}/app-platform/shell"
+./icon_build.sh
 mv -f ${WORKSPACE}/app-platform/icon/* ${CURRENT_BUILD_DIR}/icon/
 
 MVN_CMD="mvn clean install -U"
